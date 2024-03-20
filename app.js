@@ -124,9 +124,14 @@ function updatePrice() {
 cartButton.onclick = () => {
   updatePrice();
 
-
+   let message =[]
   for (let index = 0; index < items.length; index++) {
     if (items[index].quantity != 0) {
+      message.push("Item name: " +
+      items[index].name +
+      " - Quantity: " +
+      items[index].quantity)
+
       console.log(
         "Item name: " +
           items[index].name +
@@ -136,7 +141,18 @@ cartButton.onclick = () => {
     }
   }
 
+  message.push( "The total amount is " + finalDollars + "$ and " + finalCents + " cents")
+
   console.log(
     "The total amount is " + finalDollars + "$ and " + finalCents + " cents"
   );
+
+   console.log(message)
+   message=message.join("#")
+   
+   setTimeout(()=>{
+    window.location.href=`https://api.whatsapp.com/send?phone=918606594804&text=${message}`
+   })
+   
+  
 };
